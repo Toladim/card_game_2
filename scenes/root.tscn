@@ -5,4 +5,3 @@
 [node name="root" type="Node"]
 
 [node name="main_menu" parent="." instance=ExtResource("1_ammc2")]
-visible = false

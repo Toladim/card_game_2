@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ceppxpwcb64g5"]
+[gd_scene load_steps=3 format=3 uid="uid://ceppxpwcb64g5"]
 
 [ext_resource type="PackedScene" uid="uid://i782oib8kv2s" path="res://scenes/battle_area.tscn" id="1_wlbnh"]
+[ext_resource type="PackedScene" uid="uid://d1mo8i3k64ijo" path="res://scenes/battle_UI.tscn" id="2_y0jcu"]
 
-[node name="BattleScene" type="Control"]
+[node name="battle_scene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,5 +11,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BattleArea" parent="." instance=ExtResource("1_wlbnh")]
+[node name="battle_area" parent="." instance=ExtResource("1_wlbnh")]
+layout_mode = 1
+
+[node name="battle_ui" parent="." instance=ExtResource("2_y0jcu")]
 layout_mode = 1

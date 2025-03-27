@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dutt2ffkb6l2i" path="res://assets/battle_arena_01.png" id="1_jg6h2"]
 
-[node name="BattleArea" type="Control"]
+[node name="battle_area" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
