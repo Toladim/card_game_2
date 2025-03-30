@@ -12,7 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="battle_area" parent="." instance=ExtResource("1_wlbnh")]
-layout_mode = 1
 
 [node name="battle_ui" parent="." instance=ExtResource("2_y0jcu")]
 layout_mode = 1
