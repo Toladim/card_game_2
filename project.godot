@@ -24,6 +24,15 @@ window/size/window_height_override=324
 window/stretch/mode="canvas_items"
 window/stretch/aspect="ignore"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "purple",
+"res://custom_resouces/": "gray",
+"res://scenes/": "red",
+"res://scripts/": "green"
+}
+
 [rendering]
 
 renderer/rendering_method="mobile"

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://blngyhhqrn1a5"]
+
+[ext_resource type="Script" path="res://custom_resouces/card_data.gd" id="1_yg2wv"]
+[ext_resource type="Texture2D" uid="uid://b77jbbm3b3k7y" path="res://assets/#1 - Transparent Icons.png" id="2_2clju"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gif30"]
+atlas = ExtResource("2_2clju")
+region = Rect2(480, 160, 32, 32)
+
+[resource]
+script = ExtResource("1_yg2wv")
+card_name = "Punch"
+attack = 1
+deffence = 0
+texture = SubResource("AtlasTexture_gif30")
+type = 0
+target = 1

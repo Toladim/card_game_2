@@ -1,13 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://i782oib8kv2s"]
+[gd_scene load_steps=3 format=3 uid="uid://i782oib8kv2s"]
 
 [ext_resource type="Texture2D" uid="uid://dutt2ffkb6l2i" path="res://assets/battle_arena_01.png" id="1_jg6h2"]
-[ext_resource type="Texture2D" uid="uid://cdfqgwxnabu2f" path="res://icon.svg" id="2_dl0oe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14rp1"]
 size = Vector2(1920, 300)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ao4t"]
-size = Vector2(125, 125)
 
 [node name="battle_area" type="Area2D"]
 
@@ -20,21 +16,3 @@ offset = Vector2(0, 270)
 visible = false
 position = Vector2(960, 660)
 shape = SubResource("RectangleShape2D_14rp1")
-
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(500, 680)
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("2_dl0oe")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("RectangleShape2D_4ao4t")
-
-[node name="Enemy" type="CharacterBody2D" parent="."]
-position = Vector2(1420, 675)
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
-texture = ExtResource("2_dl0oe")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-shape = SubResource("RectangleShape2D_4ao4t")
