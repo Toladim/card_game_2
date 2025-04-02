@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceppxpwcb64g5"]
+[gd_scene load_steps=9 format=3 uid="uid://ceppxpwcb64g5"]
 
 [ext_resource type="Script" path="res://scripts/battle_manager.gd" id="1_f0oyh"]
 [ext_resource type="PackedScene" uid="uid://i782oib8kv2s" path="res://scenes/battle_area.tscn" id="1_wlbnh"]
 [ext_resource type="PackedScene" uid="uid://d1mo8i3k64ijo" path="res://scenes/battle_UI.tscn" id="2_y0jcu"]
 [ext_resource type="PackedScene" uid="uid://dg4s88y6ytts1" path="res://scenes/player.tscn" id="3_reniq"]
-[ext_resource type="Script" path="res://scripts/classes/character.gd" id="4_427lq"]
 [ext_resource type="PackedScene" uid="uid://w0a80su0y0ly" path="res://scenes/enemy.tscn" id="4_gmtq2"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="4_pyi8y"]
+[ext_resource type="Resource" uid="uid://c324mkcoc568o" path="res://scenes/decks/test_deck_01.tres" id="5_kda4x"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="7_1p884"]
 
 [node name="battle_scene" type="Control"]
 layout_mode = 3
@@ -20,12 +22,15 @@ script = ExtResource("1_f0oyh")
 
 [node name="Player" parent="battle_area" instance=ExtResource("3_reniq")]
 unique_name_in_owner = true
-script = ExtResource("4_427lq")
+script = ExtResource("4_pyi8y")
 character_name = "Player"
 health = 50
+deck_data = ExtResource("5_kda4x")
 
 [node name="Enemy" parent="battle_area" instance=ExtResource("4_gmtq2")]
 unique_name_in_owner = true
+script = ExtResource("7_1p884")
+deck_data = ExtResource("5_kda4x")
 
 [node name="battle_ui" parent="." instance=ExtResource("2_y0jcu")]
 layout_mode = 1
