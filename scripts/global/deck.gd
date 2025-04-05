@@ -1,7 +1,7 @@
 extends Node
 class_name Deck
 
-@export var cards : Array[CardData] = []
+var cards : Array[CardData] = []
 
 func draw_cards() -> CardData:
 	if cards.size() > 0:

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dc3qnsedb1a18"]
+
+[ext_resource type="Script" path="res://custom_resouces/card_data.gd" id="1_eolmy"]
+[ext_resource type="Texture2D" uid="uid://bslj0kof0w800" path="res://assets/atlas.tres" id="2_7dlg1"]
+
+[resource]
+script = ExtResource("1_eolmy")
+card_name = "Kick"
+attack = 1
+deffence = 0
+texture = ExtResource("2_7dlg1")
+type = 0
+target = 1

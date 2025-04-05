@@ -1,0 +1,40 @@
+[gd_scene load_steps=10 format=3 uid="uid://ceppxpwcb64g5"]
+
+[ext_resource type="Script" path="res://scripts/global/battle_manager.gd" id="1_ie6u7"]
+[ext_resource type="PackedScene" uid="uid://tyxed2pg61cc" path="res://scenes/card.tscn" id="2_gapry"]
+[ext_resource type="PackedScene" uid="uid://i782oib8kv2s" path="res://scenes/battle_area.tscn" id="2_nkd1o"]
+[ext_resource type="PackedScene" uid="uid://dg4s88y6ytts1" path="res://scenes/player.tscn" id="3_jjya7"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="4_gm5pk"]
+[ext_resource type="Resource" uid="uid://c324mkcoc568o" path="res://scenes/decks/test_deck_01.tres" id="5_ag6wb"]
+[ext_resource type="PackedScene" uid="uid://w0a80su0y0ly" path="res://scenes/enemy.tscn" id="6_n18ud"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="7_cegcb"]
+[ext_resource type="PackedScene" uid="uid://d1mo8i3k64ijo" path="res://scenes/battle_UI.tscn" id="8_jvwjo"]
+
+[node name="battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ie6u7")
+card_scene = ExtResource("2_gapry")
+
+[node name="battle_area" parent="." instance=ExtResource("2_nkd1o")]
+
+[node name="Player" parent="battle_area" instance=ExtResource("3_jjya7")]
+unique_name_in_owner = true
+script = ExtResource("4_gm5pk")
+character_name = "Player"
+health = 50
+deck_data = ExtResource("5_ag6wb")
+
+[node name="Enemy" parent="battle_area" instance=ExtResource("6_n18ud")]
+unique_name_in_owner = true
+script = ExtResource("7_cegcb")
+deck_data = ExtResource("5_ag6wb")
+
+[node name="battle_ui" parent="." instance=ExtResource("8_jvwjo")]
+layout_mode = 1
+
+[editable path="battle_ui"]

@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DeckDatabase="*res://scripts/global/deck_database.gd"
+SaveManager="*res://scripts/global/save_manager.gd"
 
 [display]
 
