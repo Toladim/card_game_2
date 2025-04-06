@@ -7,5 +7,5 @@
 [resource]
 script = ExtResource("2_7x7ee")
 cards = Array[ExtResource("1_orqvu")]([ExtResource("2_rosee"), ExtResource("2_rosee")])
-enemy_name = "Unnamed"
+enemy_name = "Test"
 max_health = 20

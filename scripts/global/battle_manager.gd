@@ -6,13 +6,17 @@ extends Node
 @onready var player_card_container: HBoxContainer = $battle_ui/Control2/MarginContainer2/HBoxContainer/player_card_container
 @onready var player: CharacterBody2D = %Player
 @onready var enemy: CharacterBody2D = %Enemy
+@onready var enemy_name: Label = $battle_ui/Control/MarginContainer/HBoxContainer/HBoxContainer2/enemy_container/enemy_name
+
+
 
 var player_cards_on_board : Array[Card] = []
 var enemy_cards_on_board : Array[Card] = []
 
 func _ready():
 	start_battle()
-
+	print(enemy_name.text)
+	
 func start_battle():
 	var player_deck = SaveManager.load_deck()
 	player.deck = Deck.new()

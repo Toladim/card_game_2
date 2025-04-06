@@ -9,15 +9,14 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_7oo46")
 
-[node name="background" type="TextureRect" parent="."]
+[node name="background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_y5u2s")
-expand_mode = 1
+color = Color(0.685366, 0.451589, 0.286856, 0.894118)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(140, 140)
@@ -45,4 +44,4 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "cosik"
+text = "card_name"
