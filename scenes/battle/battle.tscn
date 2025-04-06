@@ -35,4 +35,7 @@ enemy_data = ExtResource("6_8ixl3")
 [node name="battle_ui" parent="." instance=ExtResource("8_jvwjo")]
 layout_mode = 1
 
+[node name="enemy_hp" parent="battle_ui/Control/MarginContainer/HBoxContainer/HBoxContainer2/enemy_container" index="2"]
+value = 50.0
+
 [editable path="battle_ui"]

@@ -7,15 +7,13 @@ extends Node
 @onready var player: CharacterBody2D = %Player
 @onready var enemy: CharacterBody2D = %Enemy
 @onready var enemy_name: Label = $battle_ui/Control/MarginContainer/HBoxContainer/HBoxContainer2/enemy_container/enemy_name
+@onready var enemy_avatar: TextureRect = $battle_ui/Control/MarginContainer/HBoxContainer/Control/enemy_avatar
+@onready var player_avatar: TextureRect = $battle_ui/Control2/MarginContainer2/HBoxContainer/Control/player_avatar
 
-
-
-var player_cards_on_board : Array[Card] = []
-var enemy_cards_on_board : Array[Card] = []
+var current_enemy : EnemyData = preload("res://scenes/decks/test_enemy_data_01.tres")
 
 func _ready():
 	start_battle()
-	print(enemy_name.text)
 	
 func start_battle():
 	var player_deck = SaveManager.load_deck()
@@ -24,12 +22,14 @@ func start_battle():
 		var card_data = DeckDatabase.get_card(id)
 		if card_data != null:
 			player.deck.cards.append(card_data)
-			
+	
+	enemy.enemy_data = current_enemy
 	enemy.deck = Deck.new()
 	enemy.deck.cards = enemy.enemy_data.cards.duplicate(true)
+	enemy_name.text = current_enemy.enemy_name
+	enemy_avatar.texture = current_enemy.avatar
+	enemy.health = current_enemy.max_health
 	
-	for e in enemy.deck.cards:
-		print(e.card_name)
 	# Stwórz 5 pierwszych kart na ekranie
 	for i in range(5):
 		var p_card_data = player.deck.draw_card()
