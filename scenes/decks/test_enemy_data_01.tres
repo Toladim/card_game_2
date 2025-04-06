@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://b00j88hhvxhsw"]
+
+[ext_resource type="Script" path="res://custom_resouces/card_data.gd" id="1_orqvu"]
+[ext_resource type="Script" path="res://custom_resouces/enemy_data.gd" id="2_7x7ee"]
+[ext_resource type="Resource" uid="uid://blngyhhqrn1a5" path="res://scenes/cards/punch.tres" id="2_rosee"]
+
+[resource]
+script = ExtResource("2_7x7ee")
+cards = Array[ExtResource("1_orqvu")]([ExtResource("2_rosee"), ExtResource("2_rosee")])
+enemy_name = "Unnamed"
+max_health = 20

@@ -22,7 +22,7 @@ func start_battle():
 			player.deck.cards.append(card_data)
 			
 	enemy.deck = Deck.new()
-	enemy.deck.cards = enemy.deck_data.cards.duplicate(true)
+	enemy.deck.cards = enemy.enemy_data.cards.duplicate(true)
 	
 	for e in enemy.deck.cards:
 		print(e.card_name)
