@@ -15,8 +15,9 @@ func _ready() -> void:
 					cards[id] = card
 	else:
 		push_error("Nie udało się otworzyć folderu z kartami!") #Do poprawy - na jezyk angielski
+	
 
-func get_cards(id:String) -> CardData:
+func get_card(id:String) -> CardData:
 	return cards.get(id, null)
 
 func get_all_card_ids() -> Array[String]:

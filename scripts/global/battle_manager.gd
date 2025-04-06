@@ -21,16 +21,11 @@ func start_battle():
 		if card_data != null:
 			player.deck.cards.append(card_data)
 			
-	
 	enemy.deck = Deck.new()
-	enemy.deck.cards = [
-		DeckDatabase.get_card("punch"),
-		DeckDatabase.get_card("punch"),
-		DeckDatabase.get_card("kick"),
-		DeckDatabase.get_card("kick"),
-		DeckDatabase.get_card("punch"),
-	]
-
+	enemy.deck.cards = enemy.deck_data.cards.duplicate(true)
+	
+	for e in enemy.deck.cards:
+		print(e.card_name)
 	# Stwórz 5 pierwszych kart na ekranie
 	for i in range(5):
 		var p_card_data = player.deck.draw_card()

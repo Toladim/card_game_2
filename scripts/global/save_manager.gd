@@ -27,6 +27,12 @@ func load_deck() -> Array[String]:
 		
 	var loaded_raw = result.get("player_deck", [])
 	var loaded_clean: Array[String] = []
-	
-	print("poprawnie wczytano gre")
+	for item in loaded_raw:
+		
+		if typeof(item) == TYPE_STRING:
+			loaded_clean.append(item)
+		else:
+			loaded_clean.append(str(item))
+			
+	print("poprawnie wczytano talie gracza", loaded_clean)
 	return loaded_clean
