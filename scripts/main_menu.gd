@@ -32,11 +32,11 @@ func _on_quit_pressed():
 
 func start_new_game():
 	var default_deck_ids : Array[String] = ["punch", "kick"]
-	SaveManager.save_deck(default_deck_ids)
+	SaveManager.save_game()
 	
 
 func load_player_deck_from_save() -> Deck:
-	var card_ids = SaveManager.load_deck()
+	var card_ids = SaveManager.load_data()
 	var deck = Deck.new()
 	for id in card_ids:
 		var card = DeckDatabase.get_card(id)

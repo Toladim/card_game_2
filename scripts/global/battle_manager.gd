@@ -16,12 +16,14 @@ func _ready():
 	start_battle()
 	
 func start_battle():
-	var player_deck = SaveManager.load_deck()
+	var player_deck = SaveManager.load_game()
 	player.deck = Deck.new()
 	for id in player_deck:
 		var card_data = DeckDatabase.get_card(id)
 		if card_data != null:
 			player.deck.cards.append(card_data)
+	
+	var player_health 
 	
 	enemy.enemy_data = current_enemy
 	enemy.deck = Deck.new()
@@ -30,7 +32,6 @@ func start_battle():
 	enemy_avatar.texture = current_enemy.avatar
 	enemy.health = current_enemy.max_health
 	
-	# Stwórz 5 pierwszych kart na ekranie
 	for i in range(5):
 		var p_card_data = player.deck.draw_card()
 		var e_card_data = enemy.deck.draw_card()
