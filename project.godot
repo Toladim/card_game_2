@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 DeckDatabase="*res://scripts/global/deck_database.gd"
 SaveManager="*res://scripts/global/save_manager.gd"
+GameSession="*res://scripts/global/game_session.gd"
 
 [display]
 

@@ -1,29 +1,34 @@
 extends Node
 
 @export var card_scene : PackedScene
-
 @onready var enemy_card_container: HBoxContainer = $battle_ui/Control/MarginContainer/HBoxContainer/enemy_card_container
 @onready var player_card_container: HBoxContainer = $battle_ui/Control2/MarginContainer2/HBoxContainer/player_card_container
-@onready var player: CharacterBody2D = %Player
-@onready var enemy: CharacterBody2D = %Enemy
+@onready var player: Character = %Player
+@onready var enemy: Character = %Enemy
 @onready var enemy_name: Label = $battle_ui/Control/MarginContainer/HBoxContainer/HBoxContainer2/enemy_container/enemy_name
 @onready var enemy_avatar: TextureRect = $battle_ui/Control/MarginContainer/HBoxContainer/Control/enemy_avatar
 @onready var player_avatar: TextureRect = $battle_ui/Control2/MarginContainer2/HBoxContainer/Control/player_avatar
 
 var current_enemy : EnemyData = preload("res://scenes/decks/test_enemy_data_01.tres")
 
+var battle_in_progress : bool = false
+
 func _ready():
 	start_battle()
 	
 func start_battle():
-	var player_deck = SaveManager.load_game()
-	player.deck = Deck.new()
-	for id in player_deck:
-		var card_data = DeckDatabase.get_card(id)
-		if card_data != null:
-			player.deck.cards.append(card_data)
+	var data = GameSession.player_data
+	if not data:
+		push_error("brak danych gracza")
+		return
 	
-	var player_health 
+	player.deck = Deck.new()
+	for id in data.deck_ids:
+		var card = DeckDatabase.get_card(id)
+		if card:
+			player.deck.cards.append(card)
+	
+	player.health = data.current_health
 	
 	enemy.enemy_data = current_enemy
 	enemy.deck = Deck.new()
@@ -43,3 +48,34 @@ func start_battle():
 			var card = card_scene.instantiate()
 			card.setup(e_card_data)
 			enemy_card_container.add_child(card)
+	
+	battle_in_progress = true
+	start_turn()
+	
+func start_turn():
+	if not battle_in_progress:
+		return
+	await get_tree().create_timer(1.0).timeout # krótka przerwa między turami
+	
+	var p_card = player.deck.draw_card()
+	var e_card = enemy.deck.draw_card()
+	
+	if p_card:
+		apply_card_effect(p_card, player, enemy)
+	if e_card:
+		apply_card_effect(e_card, enemy, player)
+	
+	#update_ui()
+	
+	
+func apply_card_effect(card: CardData, user: Character, target: Character):
+	match card.type:
+		CardData.Type.ATTACK:
+			print(user.character_name, " atakuje za ", card.attack)
+			target.take_damage(card.attack)
+		CardData.Type.SKILL:
+			print(user.character_name, "uzywa skill'a")
+			
+func end_turn(result_text: String):
+	battle_in_progress = false
+	print(result_text)

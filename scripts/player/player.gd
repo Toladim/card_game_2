@@ -3,7 +3,7 @@ class_name Player
 
 func _ready() -> void:
 	super._ready()
-	var data = SaveManager.player_data
+	var data = GameSession.player_data
 	if not data:
 		push_error("Nie wczytano danych gracza")
 		return

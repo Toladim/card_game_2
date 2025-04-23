@@ -16,9 +16,12 @@ func _ready() -> void:
 
 func _on_resume_pressed():
 	print("resume")
+	GameSession.continue_game()
+	get_tree().change_scene_to_file("res://scenes/battle/battle.tscn")
 
 func _on_new_game_pressed():
-	start_new_game()
+	print("nowa gra")
+	GameSession.start_new_game()
 	get_tree().change_scene_to_file("res://scenes/battle/battle.tscn")
 
 func _on_load_game_pressed():
@@ -29,11 +32,6 @@ func _on_options_pressed():
 
 func _on_quit_pressed():
 	get_tree().quit()
-
-func start_new_game():
-	var default_deck_ids : Array[String] = ["punch", "kick"]
-	SaveManager.new_game()
-	
 
 func load_player_deck_from_save() -> Deck:
 	var card_ids = SaveManager.load_data()
