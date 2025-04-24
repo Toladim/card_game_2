@@ -1,13 +1,15 @@
 extends Node
 
 @export var card_scene : PackedScene
-@onready var enemy_card_container: HBoxContainer = $battle_ui/Control/MarginContainer/HBoxContainer/enemy_card_container
-@onready var player_card_container: HBoxContainer = $battle_ui/Control2/MarginContainer2/HBoxContainer/player_card_container
-@onready var player: Character = %Player
 @onready var enemy: Character = %Enemy
-@onready var enemy_name: Label = $battle_ui/Control/MarginContainer/HBoxContainer/HBoxContainer2/enemy_container/enemy_name
 @onready var enemy_avatar: TextureRect = $battle_ui/Control/MarginContainer/HBoxContainer/Control/enemy_avatar
+@onready var enemy_card_container: HBoxContainer = $battle_ui/Control/MarginContainer/HBoxContainer/enemy_card_container
+@onready var enemy_name: Label = $battle_ui/Control/MarginContainer/HBoxContainer/HBoxContainer2/enemy_container/enemy_name
+@onready var player: Character = %Player
 @onready var player_avatar: TextureRect = $battle_ui/Control2/MarginContainer2/HBoxContainer/Control/player_avatar
+@onready var player_card_container: HBoxContainer = $battle_ui/Control2/MarginContainer2/HBoxContainer/player_card_container
+@onready var player_name: Label = $battle_ui/Control2/MarginContainer2/HBoxContainer/HBoxContainer2/player_container/player_name
+
 
 var current_enemy : EnemyData = preload("res://scenes/decks/test_enemy_data_01.tres")
 
@@ -59,13 +61,15 @@ func start_turn():
 	
 	var p_card = player.deck.draw_card()
 	var e_card = enemy.deck.draw_card()
-	
+	print(player.deck.cards)
+	print("turn started")
 	if p_card:
 		apply_card_effect(p_card, player, enemy)
+		print("hello from p_card")
 	if e_card:
 		apply_card_effect(e_card, enemy, player)
+		print("hello from e_card")
 	
-	#update_ui()
 	
 	
 func apply_card_effect(card: CardData, user: Character, target: Character):
