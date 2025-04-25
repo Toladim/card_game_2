@@ -47,7 +47,7 @@ func start_battle():
 	player.health = data.current_health
 	player.max_health = data.max_health
 	player_hp.max_value = player.max_health
-	player_name.text = player.name
+	player_name.text = player.character_name
 	
 	for i in range(min(5, player.deck.cards.size())):
 		var p_card_data = player.deck.cards[i]
@@ -67,22 +67,23 @@ func start_battle():
 func start_turn():
 	if not battle_in_progress:
 		return
-	await get_tree().create_timer(1.0).timeout # krótka przerwa między turami
-	
+
+	await get_tree().create_timer(2.0).timeout
 	var p_card = player.deck.draw_card()
 	var e_card = enemy.deck.draw_card()
-	print(player.deck.cards)
+	print(e_card)
 	print("turn started")
+
 	if p_card:
 		apply_card_effect(p_card, player, enemy)
-		print("hello from p_card")
-		print(player_hp.value)
+		await get_tree().create_timer(2.0).timeout
 	if e_card:
 		apply_card_effect(e_card, enemy, player)
-		print("hello from e_card")
+		await get_tree().create_timer(2.0).timeout
 	
-	
-	
+	if battle_in_progress:
+		start_turn()
+
 func apply_card_effect(card: CardData, user: Character, target: Character):
 	match card.type:
 		CardData.Type.ATTACK:

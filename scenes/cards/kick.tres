@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_eolmy")
 card_name = "Kick"
-attack = 1
+attack = 2
 deffence = 0
 texture = ExtResource("2_7dlg1")
 type = 0
