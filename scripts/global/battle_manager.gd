@@ -4,10 +4,14 @@ extends Node
 @onready var enemy: Character = %Enemy
 @onready var enemy_avatar: TextureRect = $battle_ui/Control/MarginContainer/HBoxContainer/Control/enemy_avatar
 @onready var enemy_card_container: HBoxContainer = $battle_ui/Control/MarginContainer/HBoxContainer/enemy_card_container
+@onready var enemy_hp: ProgressBar = $battle_ui/Control/MarginContainer/HBoxContainer/HBoxContainer2/enemy_container/enemy_hp
+@onready var enemy_mana: ProgressBar = $battle_ui/Control/MarginContainer/HBoxContainer/HBoxContainer2/enemy_container/enemy_mana
 @onready var enemy_name: Label = $battle_ui/Control/MarginContainer/HBoxContainer/HBoxContainer2/enemy_container/enemy_name
 @onready var player: Character = %Player
 @onready var player_avatar: TextureRect = $battle_ui/Control2/MarginContainer2/HBoxContainer/Control/player_avatar
 @onready var player_card_container: HBoxContainer = $battle_ui/Control2/MarginContainer2/HBoxContainer/player_card_container
+@onready var player_hp: ProgressBar = $battle_ui/Control2/MarginContainer2/HBoxContainer/HBoxContainer2/player_container/player_hp
+@onready var player_mana: ProgressBar = $battle_ui/Control2/MarginContainer2/HBoxContainer/HBoxContainer2/player_container/player_mana
 @onready var player_name: Label = $battle_ui/Control2/MarginContainer2/HBoxContainer/HBoxContainer2/player_container/player_name
 
 
@@ -16,6 +20,8 @@ var current_enemy : EnemyData = preload("res://scenes/decks/test_enemy_data_01.t
 var battle_in_progress : bool = false
 
 func _ready():
+	connect_character_ui(player, player_hp)
+	connect_character_ui(enemy, enemy_hp)
 	start_battle()
 	
 func start_battle():
@@ -30,26 +36,30 @@ func start_battle():
 		if card:
 			player.deck.cards.append(card)
 	
-	player.health = data.current_health
-	
 	enemy.enemy_data = current_enemy
 	enemy.deck = Deck.new()
 	enemy.deck.cards = enemy.enemy_data.cards.duplicate(true)
-	enemy_name.text = current_enemy.enemy_name
-	enemy_avatar.texture = current_enemy.avatar
 	enemy.health = current_enemy.max_health
+	enemy_avatar.texture = current_enemy.avatar
+	enemy_hp.value = current_enemy.health
+	enemy_hp.max_value = current_enemy.max_health
+	enemy_name.text = current_enemy.enemy_name
+	player.health = data.current_health
+	player.max_health = data.max_health
+	player_hp.max_value = player.max_health
+	player_name.text = player.name
 	
-	for i in range(5):
-		var p_card_data = player.deck.draw_card()
-		var e_card_data = enemy.deck.draw_card()
-		if p_card_data:
-			var card = card_scene.instantiate()
-			card.setup(p_card_data)
-			player_card_container.add_child(card)
-		if e_card_data:
-			var card = card_scene.instantiate()
-			card.setup(e_card_data)
-			enemy_card_container.add_child(card)
+	for i in range(min(5, player.deck.cards.size())):
+		var p_card_data = player.deck.cards[i]
+		var card = card_scene.instantiate()
+		card.setup(p_card_data)
+		player_card_container.add_child(card)
+	
+	for i in range(min(5, enemy.deck.cards.size())):
+		var e_card_data = enemy.deck.cards[i]
+		var card = card_scene.instantiate()
+		card.setup(e_card_data)
+		enemy_card_container.add_child(card)
 	
 	battle_in_progress = true
 	start_turn()
@@ -66,6 +76,7 @@ func start_turn():
 	if p_card:
 		apply_card_effect(p_card, player, enemy)
 		print("hello from p_card")
+		print(player_hp.value)
 	if e_card:
 		apply_card_effect(e_card, enemy, player)
 		print("hello from e_card")
@@ -83,3 +94,7 @@ func apply_card_effect(card: CardData, user: Character, target: Character):
 func end_turn(result_text: String):
 	battle_in_progress = false
 	print(result_text)
+
+func connect_character_ui(character: Character, health_bar: ProgressBar):
+	character.health_changed.connect(func(hp): health_bar.value = hp)
+	print("wywolane")

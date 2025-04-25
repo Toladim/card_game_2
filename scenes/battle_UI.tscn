@@ -113,6 +113,7 @@ value = 50.0
 show_percentage = false
 
 [node name="enemy_mana" type="ProgressBar" parent="Control/MarginContainer/HBoxContainer/HBoxContainer2/enemy_container"]
+visible = false
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 step = 1.0
@@ -242,7 +243,7 @@ size_flags_horizontal = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 25
 
-[node name="Button" type="Button" parent="Control2/MarginContainer2/HBoxContainer"]
+[node name="menu_button" type="Button" parent="Control2/MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -272,11 +273,17 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="Control2/MarginContainer2/HBoxContainer/HBoxContainer2/player_container"]
+[node name="player_hp" type="ProgressBar" parent="Control2/MarginContainer2/HBoxContainer/HBoxContainer2/player_container"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+show_percentage = false
 
-[node name="ProgressBar2" type="ProgressBar" parent="Control2/MarginContainer2/HBoxContainer/HBoxContainer2/player_container"]
+[node name="player_mana" type="ProgressBar" parent="Control2/MarginContainer2/HBoxContainer/HBoxContainer2/player_container"]
+visible = false
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+step = 1.0
+show_percentage = false
 
 [node name="Spacer" type="Control" parent="Control2/MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -288,11 +295,25 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 
-[node name="player_avatar" type="TextureRect" parent="Control2/MarginContainer2/HBoxContainer/Control"]
+[node name="avatar_background" type="ColorRect" parent="Control2/MarginContainer2/HBoxContainer/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.985786, 0.653839, 0.413065, 1)
+
+[node name="player_avatar" type="TextureRect" parent="Control2/MarginContainer2/HBoxContainer/Control"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_right = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_fslmo")

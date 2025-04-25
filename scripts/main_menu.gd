@@ -6,7 +6,6 @@ extends Control
 @onready var options_button: Button = %options_button
 @onready var quit_button: Button = %quit_button
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	resume_button.pressed.connect(_on_resume_pressed)
 	new_game_button.pressed.connect(_on_new_game_pressed)
