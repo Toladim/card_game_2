@@ -9,7 +9,7 @@ region = Rect2(480, 160, 32, 32)
 
 [resource]
 script = ExtResource("1_yg2wv")
-card_name = "Punch"
+card_name = ""
 attack = 1
 deffence = 0
 texture = SubResource("AtlasTexture_gif30")

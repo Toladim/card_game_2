@@ -130,11 +130,11 @@ theme_override_constants/separation = 25
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 
-[node name="card_pile" type="Control" parent="Control/MarginContainer/HBoxContainer"]
+[node name="enemy_card_pile" type="Control" parent="Control/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(160, 240)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/card_pile"]
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/enemy_card_pile"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -144,7 +144,7 @@ grow_vertical = 2
 texture = ExtResource("2_fslmo")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/card_pile"]
+[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/enemy_card_pile"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -201,11 +201,19 @@ theme_override_constants/margin_bottom = 5
 [node name="HBoxContainer" type="HBoxContainer" parent="Control2/MarginContainer2"]
 layout_mode = 2
 
-[node name="card_pile" type="Control" parent="Control2/MarginContainer2/HBoxContainer"]
+[node name="player_card_pile" type="Control" parent="Control2/MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(160, 240)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control2/MarginContainer2/HBoxContainer/card_pile"]
+[node name="background" type="TextureRect" parent="Control2/MarginContainer2/HBoxContainer/player_card_pile"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control2/MarginContainer2/HBoxContainer/player_card_pile/background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -215,7 +223,7 @@ grow_vertical = 2
 texture = ExtResource("2_fslmo")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Control2/MarginContainer2/HBoxContainer/card_pile"]
+[node name="Label" type="Label" parent="Control2/MarginContainer2/HBoxContainer/player_card_pile/background"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
