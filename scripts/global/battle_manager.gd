@@ -62,27 +62,21 @@ func start_battle():
 		enemy_card_container.add_child(card)
 	
 	battle_in_progress = true
-	start_turn()
+	start_turn(player, enemy) #mozna dodac pozniej randomizacje
 	
-func start_turn():
+	
+func start_turn(user: Character, target: Character):
 	if not battle_in_progress:
 		return
-
+		
 	await get_tree().create_timer(2.0).timeout
-	var p_card = player.deck.draw_card()
-	var e_card = enemy.deck.draw_card()
-	print(e_card)
-	print("turn started")
-
-	if p_card:
-		apply_card_effect(p_card, player, enemy)
-		await get_tree().create_timer(2.0).timeout
-	if e_card:
-		apply_card_effect(e_card, enemy, player)
-		await get_tree().create_timer(2.0).timeout
-	
-	if battle_in_progress:
-		start_turn()
+	var card = user.deck.draw_card()
+	if card:
+		apply_card_effect(card, user, target)
+	if target.health <=0 or target.deck.cards.size() <= 0:
+		end_turn(str(user.character_name) +"wygrywa")
+	else:
+		start_turn(target, user)
 
 func apply_card_effect(card: CardData, user: Character, target: Character):
 	match card.type:
@@ -91,7 +85,7 @@ func apply_card_effect(card: CardData, user: Character, target: Character):
 			target.take_damage(card.attack)
 		CardData.Type.SKILL:
 			print(user.character_name, "uzywa skill'a")
-			
+
 func end_turn(result_text: String):
 	battle_in_progress = false
 	print(result_text)
