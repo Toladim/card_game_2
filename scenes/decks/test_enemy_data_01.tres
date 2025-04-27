@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=5 format=3 uid="uid://b00j88hhvxhsw"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=6 format=3 uid="uid://b00j88hhvxhsw"]
 
 [ext_resource type="Texture2D" uid="uid://bslj0kof0w800" path="res://assets/atlas.tres" id="1_gul18"]
 [ext_resource type="Script" path="res://custom_resouces/card_data.gd" id="1_orqvu"]
 [ext_resource type="Script" path="res://custom_resouces/enemy_data.gd" id="2_7x7ee"]
 [ext_resource type="Resource" uid="uid://dc3qnsedb1a18" path="res://scenes/cards/kick.tres" id="3_lkohd"]
+[ext_resource type="Resource" uid="uid://ciajyprtkiq6r" path="res://scenes/cards/block.tres" id="4_xlqdp"]
 
 [resource]
 script = ExtResource("2_7x7ee")
-cards = Array[ExtResource("1_orqvu")]([ExtResource("3_lkohd"), ExtResource("3_lkohd")])
+cards = Array[ExtResource("1_orqvu")]([ExtResource("3_lkohd"), ExtResource("3_lkohd"), ExtResource("4_xlqdp"), ExtResource("4_xlqdp"), ExtResource("4_xlqdp"), ExtResource("4_xlqdp"), ExtResource("4_xlqdp"), ExtResource("4_xlqdp"), ExtResource("4_xlqdp")])
 enemy_name = "Test Enemy"
 avatar = ExtResource("1_gul18")
 health = 3

@@ -16,6 +16,8 @@ extends Node
 @onready var player_mana: ProgressBar = $battle_ui/Control2/MarginContainer2/HBoxContainer/HBoxContainer2/player_container/player_mana
 @onready var player_name: Label = $battle_ui/Control2/MarginContainer2/HBoxContainer/HBoxContainer2/player_container/player_name
 
+var user_ui_data : Dictionary = {}
+
 var current_enemy : EnemyData = preload("res://scenes/decks/test_enemy_data_01.tres")
 
 var battle_in_progress : bool = false
@@ -31,12 +33,28 @@ func start_battle():
 		push_error("brak danych gracza")
 		return
 
+	user_ui_data[player] = {
+	"card_container": player_card_container,
+	"card_pile": player_card_pile,
+	"avatar": player_avatar,
+	"hp_bar": player_hp,
+	"name_label": player_name
+}
+	user_ui_data[enemy] = {
+	"card_container": enemy_card_container,
+	"card_pile": enemy_card_pile,
+	"avatar": enemy_avatar,
+	"hp_bar": enemy_hp,
+	"name_label": enemy_name
+}
+	
 	player.deck = Deck.new()
 	for id in data.deck_ids:
 		var card = DeckDatabase.get_card(id)
 		if card:
 			player.deck.cards.append(card)
-
+	
+	
 	enemy.enemy_data = current_enemy
 	enemy.deck = Deck.new()
 	enemy.deck.cards = enemy.enemy_data.cards.duplicate(true)
@@ -51,23 +69,19 @@ func start_battle():
 	player_name.text = player.character_name
 	
 	if player.deck.cards.size() < 5:
-		player_card_pile.find_child("TextureRect").hide()
-		
-	
-	for i in range(min(5, player.deck.cards.size())):
-		var p_card_data = player.deck.cards[i]
-		var card = card_scene.instantiate()
-		card.setup(p_card_data)
-		player_card_container.add_child(card)
-	
-	for i in range(min(5, enemy.deck.cards.size())):
-		var e_card_data = enemy.deck.cards[i]
-		var card = card_scene.instantiate()
-		card.setup(e_card_data)
-		enemy_card_container.add_child(card)
+		player_card_pile.find_child("TextureRect").hide()#zmienic pozniej nazwe wezla odpowiedzialnego za texture deck_pile
 	
 	battle_in_progress = true
+	draw_first_5_cards(player, player_card_container)
+	draw_first_5_cards(enemy, enemy_card_container)
 	start_turn(player, enemy) #mozna dodac pozniej randomizacje
+	
+func draw_first_5_cards(user: Character, card_container: HBoxContainer):
+	for i in range(min(5, user.deck.cards.size())):
+		var card_data = user.deck.cards[i]
+		var card = card_scene.instantiate()
+		card.setup(card_data)
+		card_container.add_child(card)
 
 func start_turn(user: Character, target: Character):
 	if not battle_in_progress:
@@ -77,17 +91,31 @@ func start_turn(user: Character, target: Character):
 	var card = user.deck.draw_card()
 	if card:
 		apply_card_effect(card, user, target)
+		update_hand(user)
 	if target.health <=0 or target.deck.cards.size() <= 0:
 		end_battle(str(user.character_name) +" wygrywa")
 	elif user.health <=0 or user.deck.cards.size() <= 0:
 		end_battle(str(target.character_name) +" wygrywa")
 	else:
 		start_turn(target, user)
-
+		
+func update_hand(user: Character):
+	var data = user_ui_data.get(user)
+	if data:
+		var container = data["card_container"]
+		if container.get_child_count() > 0:
+			var card_ui = container.get_child(0)
+			card_ui.queue_free()
+		if user.deck.cards.size() > container.get_child_count():
+			var next_card_data = user.deck.cards[container.get_child_count()]
+			var new_card = card_scene.instantiate()
+			new_card.setup(next_card_data)
+			container.add_child(new_card)
+		
 func apply_card_effect(card: CardData, user: Character, target: Character):
 	match card.type:
 		CardData.Type.ATTACK:
-			print(user.character_name, " atakuje za ", card.attack)
+			print(user.character_name, " atakuje za ", card.attack," ", target.character_name)
 			target.take_damage(card.attack)
 		CardData.Type.SKILL:
 			print(user.character_name, "uzywa skill'a")
