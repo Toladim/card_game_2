@@ -33,7 +33,7 @@ func load_game():
 		return null
 		
 	var data = PlayerData.new()
-	data.player_name = result.get("player_name", "Unnamed")
+	data.char_name = result.get("char_name", "Unnamed")
 	data.current_health = result.get("current_health", 10)
 	data.max_health = result.get("max_health", 10)
 	data.mana = result.get("mana", 2)

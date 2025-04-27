@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="DeckData" load_steps=4 format=3 uid="uid://c324mkcoc568o"]
-
-[ext_resource type="Script" path="res://custom_resouces/card_data.gd" id="1_bh2jd"]
-[ext_resource type="Script" path="res://custom_resouces/deck_data.gd" id="2_h762p"]
-[ext_resource type="Resource" uid="uid://blngyhhqrn1a5" path="res://scenes/cards/punch.tres" id="2_w0vf5"]
-
-[resource]
-script = ExtResource("2_h762p")
-cards = Array[ExtResource("1_bh2jd")]([ExtResource("2_w0vf5"), ExtResource("2_w0vf5")])

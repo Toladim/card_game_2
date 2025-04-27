@@ -7,10 +7,11 @@ var phase : int = 0
 func start_new_game():
 	player_data = PlayerData.new()
 	player_data.char_name = "Player"
-	player_data.max_health = 2
-	player_data.current_health = 2
+	player_data.max_health = 20
+	player_data.current_health = 20
 	player_data.mana = 5
-	player_data.deck_ids = ["punch", "kick", "block"]
+	player_data.deck_ids = ["punch", "kick", "kick", "kick", "kick", "kick", "kick", "kick", 
+	"kick", "kick", "kick", "kick", "kick", "kick", "kick", "kick", "kick", "block"]
 	
 	SaveManager.save_game(player_data)
 	print("Nowa gra rozpoczęta.")
