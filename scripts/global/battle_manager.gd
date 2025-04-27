@@ -18,55 +18,24 @@ extends Node
 
 var user_ui_data : Dictionary = {}
 
-var current_enemy : EnemyData = preload("res://scenes/decks/test_enemy_data_01.tres")
+var current_enemy : EnemyData = preload("res://scenes/decks/enemy_data_01.tres")
 
 var battle_in_progress : bool = false
 
 func _ready():
+	setup_ui_mapping()
 	connect_character_ui(player, player_hp)
 	connect_character_ui(enemy, enemy_hp)
 	start_battle()
 
 func start_battle():
-	var data = GameSession.player_data
-	if not data:
+	var player_data = GameSession.player_data
+	if not player_data:
 		push_error("brak danych gracza")
 		return
-
-	user_ui_data[player] = {
-	"card_container": player_card_container,
-	"card_pile": player_card_pile,
-	"avatar": player_avatar,
-	"hp_bar": player_hp,
-	"name_label": player_name
-}
-	user_ui_data[enemy] = {
-	"card_container": enemy_card_container,
-	"card_pile": enemy_card_pile,
-	"avatar": enemy_avatar,
-	"hp_bar": enemy_hp,
-	"name_label": enemy_name
-}
 	
-	player.deck = Deck.new()
-	for id in data.deck_ids:
-		var card = DeckDatabase.get_card(id)
-		if card:
-			player.deck.cards.append(card)
-	
-	
-	enemy.enemy_data = current_enemy
-	enemy.deck = Deck.new()
-	enemy.deck.cards = enemy.enemy_data.cards.duplicate(true)
-	enemy.health = current_enemy.max_health
-	enemy_avatar.texture = current_enemy.avatar
-	enemy_hp.value = current_enemy.health
-	enemy_hp.max_value = current_enemy.max_health
-	enemy_name.text = current_enemy.enemy_name
-	player.health = data.current_health
-	player.max_health = data.max_health
-	player_hp.max_value = player.max_health
-	player_name.text = player.character_name
+	setup_character(player, player_data)
+	setup_character(enemy, current_enemy)
 	
 	if player.deck.cards.size() < 5:
 		player_card_pile.find_child("TextureRect").hide()#zmienic pozniej nazwe wezla odpowiedzialnego za texture deck_pile
@@ -75,7 +44,25 @@ func start_battle():
 	draw_first_5_cards(player, player_card_container)
 	draw_first_5_cards(enemy, enemy_card_container)
 	start_turn(player, enemy) #mozna dodac pozniej randomizacje
+
+func setup_character(character: Character, data: CharacterData) -> void:
+	character.deck = Deck.new()
+	for id in data.deck_ids:
+		var card = DeckDatabase.get_card(id)
+		if card:
+			character.deck.cards.append(card)
 	
+	character.character_name = data.char_name
+	character.health = data.max_health
+	character.max_health = data.max_health
+	
+	var ui = user_ui_data.get(character)
+	if ui:
+		ui["hp_bar"].max_value = character.max_health
+		ui["hp_bar"].value = character.health
+		ui["name_label"].text = data.char_name
+		ui["avatar"].texture = data.avatar
+
 func draw_first_5_cards(user: Character, card_container: HBoxContainer):
 	for i in range(min(5, user.deck.cards.size())):
 		var card_data = user.deck.cards[i]
@@ -126,3 +113,19 @@ func end_battle(result_text: String):
 
 func connect_character_ui(character: Character, health_bar: ProgressBar):
 	character.health_changed.connect(func(hp): health_bar.value = hp)
+
+func setup_ui_mapping():
+	user_ui_data[player] = {
+		"card_container": player_card_container,
+		"card_pile": player_card_pile,
+		"avatar": player_avatar,
+		"hp_bar": player_hp,
+		"name_label": player_name
+	}
+	user_ui_data[enemy] = {
+		"card_container": enemy_card_container,
+		"card_pile": enemy_card_pile,
+		"avatar": enemy_avatar,
+		"hp_bar": enemy_hp,
+		"name_label": enemy_name
+	}

@@ -6,7 +6,7 @@ var phase : int = 0
 
 func start_new_game():
 	player_data = PlayerData.new()
-	player_data.player_name = "Player"
+	player_data.char_name = "Player"
 	player_data.max_health = 2
 	player_data.current_health = 2
 	player_data.mana = 5

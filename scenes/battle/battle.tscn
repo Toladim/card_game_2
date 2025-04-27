@@ -1,14 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://ceppxpwcb64g5"]
+[gd_scene load_steps=11 format=3 uid="uid://ceppxpwcb64g5"]
 
 [ext_resource type="Script" path="res://scripts/global/battle_manager.gd" id="1_ie6u7"]
 [ext_resource type="PackedScene" uid="uid://tyxed2pg61cc" path="res://scenes/card.tscn" id="2_gapry"]
 [ext_resource type="PackedScene" uid="uid://i782oib8kv2s" path="res://scenes/battle_area.tscn" id="2_nkd1o"]
 [ext_resource type="PackedScene" uid="uid://dg4s88y6ytts1" path="res://scenes/player.tscn" id="3_jjya7"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="4_gm5pk"]
-[ext_resource type="Resource" uid="uid://b00j88hhvxhsw" path="res://scenes/decks/test_enemy_data_01.tres" id="6_8ixl3"]
 [ext_resource type="PackedScene" uid="uid://w0a80su0y0ly" path="res://scenes/enemy.tscn" id="6_n18ud"]
 [ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="7_cegcb"]
+[ext_resource type="Script" path="res://custom_resouces/enemy_data.gd" id="8_j2vq8"]
 [ext_resource type="PackedScene" uid="uid://d1mo8i3k64ijo" path="res://scenes/battle_UI.tscn" id="8_jvwjo"]
+
+[sub_resource type="Resource" id="Resource_mi41x"]
+script = ExtResource("8_j2vq8")
+deck_ids = Array[String]([])
+char_name = "Unnamed"
+max_health = 5
+mana = 0
+current_health = 5
 
 [node name="battle" type="Control"]
 layout_mode = 3
@@ -30,7 +38,7 @@ character_name = "Player"
 [node name="Enemy" parent="battle_area" instance=ExtResource("6_n18ud")]
 unique_name_in_owner = true
 script = ExtResource("7_cegcb")
-enemy_data = ExtResource("6_8ixl3")
+enemy_data = SubResource("Resource_mi41x")
 
 [node name="battle_ui" parent="." instance=ExtResource("8_jvwjo")]
 layout_mode = 1

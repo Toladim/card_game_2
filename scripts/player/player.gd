@@ -8,6 +8,6 @@ func _ready() -> void:
 		push_error("Nie wczytano danych gracza")
 		return
 	
-	character_name = data.player_name
+	character_name = data.char_name
 	health = data.current_health
 	max_health = data.max_health

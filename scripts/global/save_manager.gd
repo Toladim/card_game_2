@@ -7,7 +7,7 @@ func save_game(data: PlayerData) -> void:
 		return
 	
 	var save_dict = {
-		"player_name" = data.player_name,
+		"char_name" = data.char_name,
 		"current_health" = data.current_health,
 		"max_health" = data.max_health,
 		"mana" = data.mana,
