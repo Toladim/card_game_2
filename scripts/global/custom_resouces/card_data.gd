@@ -11,3 +11,4 @@ enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, EVERYONE}
 @export var texture : AtlasTexture
 @export var type: Type
 @export var target: Target
+@export var mana_cost : int = 0

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://ciajyprtkiq6r"]
 
-[ext_resource type="Script" path="res://custom_resouces/card_data.gd" id="1_i3bt7"]
+[ext_resource type="Script" path="res://scripts/global/custom_resouces/card_data.gd" id="1_i3bt7"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_epoxl"]
 load_path = "res://.godot/imported/#1 - Transparent Icons.png-a844bd7ea73e90253473d01b6ce0e60e.ctex"

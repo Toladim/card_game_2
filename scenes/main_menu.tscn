@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmborrxskas4x"]
 
 [ext_resource type="Texture2D" uid="uid://cdfqgwxnabu2f" path="res://icon.svg" id="1_3dt6t"]
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_tnsjk"]
+[ext_resource type="Script" path="res://scripts/main menu/main_menu.gd" id="1_tnsjk"]
 [ext_resource type="Texture2D" uid="uid://bugw0w7qrn1fg" path="res://assets/game_name_logo.png" id="2_a8sv5"]
 
 [node name="main_menu" type="Control"]

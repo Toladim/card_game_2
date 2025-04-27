@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1mo8i3k64ijo"]
+[gd_scene load_steps=2 format=3 uid="uid://d1mo8i3k64ijo"]
 
-[ext_resource type="Script" path="res://scripts/battle_ui.gd" id="1_ibdx1"]
 [ext_resource type="Texture2D" uid="uid://cdfqgwxnabu2f" path="res://icon.svg" id="2_fslmo"]
 
 [node name="battle_UI" type="Control"]
@@ -10,7 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ibdx1")
 
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(1920, 270)
@@ -121,6 +119,7 @@ value = 50.0
 show_percentage = false
 
 [node name="enemy_card_container" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(900, 240)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4

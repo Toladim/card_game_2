@@ -34,9 +34,9 @@ window/stretch/aspect="ignore"
 
 folder_colors={
 "res://assets/": "purple",
-"res://custom_resouces/": "gray",
 "res://scenes/": "red",
-"res://scripts/": "green"
+"res://scripts/": "green",
+"res://scripts/global/custom_resouces/": "pink"
 }
 
 [rendering]

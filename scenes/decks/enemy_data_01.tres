@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://5snru4wng522"]
 
-[ext_resource type="Script" path="res://custom_resouces/enemy_data.gd" id="1_7f7f0"]
+[ext_resource type="Script" path="res://scripts/global/custom_resouces/enemy_data.gd" id="1_7f7f0"]
 [ext_resource type="Texture2D" uid="uid://bslj0kof0w800" path="res://assets/atlas.tres" id="1_qm2bx"]
 
 [resource]
