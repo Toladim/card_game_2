@@ -11,3 +11,4 @@ deffence = 0
 texture = ExtResource("2_7dlg1")
 type = 0
 target = 1
+mana_cost = 5

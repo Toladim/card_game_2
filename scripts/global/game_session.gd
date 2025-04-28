@@ -9,7 +9,8 @@ func start_new_game():
 	player_data.char_name = "Player"
 	player_data.max_health = 20
 	player_data.current_health = 20
-	player_data.mana = 5
+	player_data.max_mana = 10
+	player_data.mana = 20
 	player_data.deck_ids = ["punch", "kick", "kick", "kick", "kick", "kick", "kick", "kick", 
 	"kick", "kick", "kick", "kick", "kick", "kick", "kick", "kick", "kick", "block"]
 	

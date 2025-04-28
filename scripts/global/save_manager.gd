@@ -11,6 +11,7 @@ func save_game(data: PlayerData) -> void:
 		"current_health" = data.current_health,
 		"max_health" = data.max_health,
 		"mana" = data.mana,
+		"max_mana" = data.max_mana,
 		"deck_ids" = data.deck_ids
 		}
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -37,6 +38,7 @@ func load_game():
 	data.current_health = result.get("current_health", 10)
 	data.max_health = result.get("max_health", 10)
 	data.mana = result.get("mana", 2)
+	data.max_mana = result.get("max_mana", 10)
 	var raw_ids = result.get("deck_ids", [])
 	var deck_ids : Array[String] = []
 	

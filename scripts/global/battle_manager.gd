@@ -20,12 +20,14 @@ var user_ui_data : Dictionary = {}
 
 var current_enemy : EnemyData = preload("res://scenes/decks/enemy_data_01.tres")
 
+var mana_reg_value : int = 1
+
 var battle_in_progress : bool = false
 
 func _ready():
 	setup_ui_mapping()
-	connect_character_ui(player, player_hp)
-	connect_character_ui(enemy, enemy_hp)
+	connect_character_ui(player)
+	connect_character_ui(enemy)
 	start_battle()
 
 func start_battle():
@@ -55,11 +57,15 @@ func setup_character(character: Character, data: CharacterData) -> void:
 	character.character_name = data.char_name
 	character.health = data.max_health
 	character.max_health = data.max_health
+	character.mana = data.max_mana
+	character.max_mana = data.max_mana
 	
 	var ui = user_ui_data.get(character)
 	if ui:
 		ui["hp_bar"].max_value = character.max_health
 		ui["hp_bar"].value = character.health
+		ui["mana_bar"].max_value = character.max_mana
+		ui["mana_bar"].value = character.mana
 		ui["name_label"].text = data.char_name
 		ui["avatar"].texture = data.avatar
 
@@ -73,7 +79,10 @@ func draw_first_5_cards(user: Character, card_container: HBoxContainer):
 func start_turn(user: Character, target: Character):
 	if not battle_in_progress:
 		return
-
+	
+	print(user.mana)
+	user.add_mana(mana_reg_value)
+	
 	await get_tree().create_timer(2.0).timeout
 	var card = user.deck.draw_card()
 	if card:
@@ -100,6 +109,12 @@ func update_hand(user: Character):
 			container.add_child(new_card)
 		
 func apply_card_effect(card: CardData, user: Character, target: Character):
+	if user.mana < card.mana_cost:
+		print("brakuje many")
+		return
+		
+	user.mana -= card.mana_cost
+	user.mana_changed.emit(user.mana)
 	match card.type:
 		CardData.Type.ATTACK:
 			print(user.character_name, " atakuje za ", card.attack," ", target.character_name)
@@ -111,15 +126,26 @@ func end_battle(result_text: String):
 	battle_in_progress = false
 	print(result_text)
 
-func connect_character_ui(character: Character, health_bar: ProgressBar):
-	character.health_changed.connect(func(hp): health_bar.value = hp)
+func connect_character_ui(character: Character):
+	var ui = user_ui_data.get(character)
+	if not ui:
+		push_error("Brak UI dla postaci")
+		return
 
+	if ui.has("hp_bar"):
+		character.health_changed.connect(func(hp): ui["hp_bar"].value = hp)
+		character.max_health_changed.connect(func(max_hp): ui["hp_bar"].max_value = max_hp)
+	if ui.has("mana_bar"):
+		character.mana_changed.connect(func(mana): ui["mana_bar"].value = mana)
+		character.max_mana_changed.connect(func(max_mana): ui["mana_bar"].max_value = max_mana)
+	
 func setup_ui_mapping():
 	user_ui_data[player] = {
 		"card_container": player_card_container,
 		"card_pile": player_card_pile,
 		"avatar": player_avatar,
 		"hp_bar": player_hp,
+		"mana_bar": player_mana,
 		"name_label": player_name
 	}
 	user_ui_data[enemy] = {
@@ -127,5 +153,6 @@ func setup_ui_mapping():
 		"card_pile": enemy_card_pile,
 		"avatar": enemy_avatar,
 		"hp_bar": enemy_hp,
+		"mana_bar": enemy_mana,
 		"name_label": enemy_name
 	}
