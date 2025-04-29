@@ -12,8 +12,10 @@ region = Rect2(64, 192, 32, 32)
 [resource]
 script = ExtResource("1_i3bt7")
 card_name = "Block"
+type = 0
 attack = 0
 deffence = 1
+heal_value = 0
 texture = SubResource("AtlasTexture_32q16")
-type = 0
 target = 0
+mana_cost = 0

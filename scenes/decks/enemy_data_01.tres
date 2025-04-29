@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_7f7f0")
-deck_ids = Array[String](["kick", "kick", "block", "punch", "kick", "block", "kick", "block", "kick", "kick", "kick", "kick", "punch", "punch", "kick", "block", "block", "kick", "kick", "kick"])
+deck_ids = Array[String](["weak_heal", "kick", "block", "punch", "kick", "block", "kick", "block", "kick", "kick", "kick", "kick", "punch", "punch", "kick", "block", "block", "kick", "kick", "kick"])
 char_name = "But"
 avatar = ExtResource("1_qm2bx")
 current_health = 5

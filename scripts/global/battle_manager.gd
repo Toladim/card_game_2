@@ -80,9 +80,10 @@ func start_turn(user: Character, target: Character):
 	if not battle_in_progress:
 		return
 
-	if user.mana < user.max_mana:
-		user.add_mana(mana_reg_value)
-	
+	print(user.mana)
+	user.add_mana(mana_reg_value)
+	print(user.mana)
+
 	await get_tree().create_timer(2.0).timeout
 	var card = user.deck.draw_card()
 	if card:
@@ -120,7 +121,7 @@ func apply_card_effect(card: CardData, user: Character, target: Character):
 			print(user.character_name, " atakuje za ", card.attack," ", target.character_name)
 			target.take_damage(card.attack)
 		CardData.Type.SKILL:
-			print(user.character_name, "uzywa skill'a")
+			print(user.character_name, " uzywa skill'a")
 
 func end_battle(result_text: String):
 	battle_in_progress = false

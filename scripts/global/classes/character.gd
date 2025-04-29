@@ -57,4 +57,12 @@ func add_block(amount: int):
 
 func add_mana(amount: int):
 	mana += amount
+	if mana > max_mana:
+		mana = max_mana
 	mana_changed.emit(mana)
+
+func heal(amount: int):
+	health += amount
+	if health > max_health:
+		health = max_health
+	health_changed.emit(health)
