@@ -79,9 +79,9 @@ func draw_first_5_cards(user: Character, card_container: HBoxContainer):
 func start_turn(user: Character, target: Character):
 	if not battle_in_progress:
 		return
-	
-	print(user.mana)
-	user.add_mana(mana_reg_value)
+
+	if user.mana < user.max_mana:
+		user.add_mana(mana_reg_value)
 	
 	await get_tree().create_timer(2.0).timeout
 	var card = user.deck.draw_card()

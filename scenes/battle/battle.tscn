@@ -44,9 +44,6 @@ enemy_data = SubResource("Resource_mi41x")
 [node name="battle_ui" parent="." instance=ExtResource("8_jvwjo")]
 layout_mode = 1
 
-[node name="enemy_mana" parent="battle_ui/Control/MarginContainer/HBoxContainer/HBoxContainer2/enemy_container" index="3"]
-visible = true
-
 [node name="player_mana" parent="battle_ui/Control2/MarginContainer2/HBoxContainer/HBoxContainer2/player_container" index="3"]
 visible = true
 
