@@ -10,10 +10,11 @@ region = Rect2(480, 160, 32, 32)
 [resource]
 script = ExtResource("1_yg2wv")
 card_name = ""
+description = ""
 type = 0
+target = 2
+texture = SubResource("AtlasTexture_gif30")
+mana_cost = 0
 attack = 1
 deffence = 0
-heal_value = 0
-texture = SubResource("AtlasTexture_gif30")
-target = 1
-mana_cost = 0
+heal = 0

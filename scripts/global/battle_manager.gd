@@ -116,12 +116,8 @@ func apply_card_effect(card: CardData, user: Character, target: Character):
 		
 	user.mana -= card.mana_cost
 	user.mana_changed.emit(user.mana)
-	match card.type:
-		CardData.Type.ATTACK:
-			print(user.character_name, " atakuje za ", card.attack," ", target.character_name)
-			target.take_damage(card.attack)
-		CardData.Type.SKILL:
-			print(user.character_name, " uzywa skill'a")
+##BUG 
+#ZAPISANE Z BUGIEM
 
 func end_battle(result_text: String):
 	battle_in_progress = false

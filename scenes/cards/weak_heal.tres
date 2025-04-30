@@ -10,10 +10,11 @@ region = Rect2(128, 288, 32, 32)
 [resource]
 script = ExtResource("1_pgwlh")
 card_name = "Małe Leczenie"
+description = ""
 type = 1
+target = 0
+texture = SubResource("AtlasTexture_uavvl")
+mana_cost = 1
 attack = 0
 deffence = 0
-heal_value = 5
-texture = SubResource("AtlasTexture_uavvl")
-target = 0
-mana_cost = 1
+heal = 0
