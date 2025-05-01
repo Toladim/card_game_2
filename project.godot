@@ -30,11 +30,16 @@ window/size/window_height_override=324
 window/stretch/mode="canvas_items"
 window/stretch/aspect="ignore"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/cardimporter/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
 "res://assets/": "purple",
 "res://custom_resouces/": "pink",
+"res://dev/": "gray",
 "res://scenes/": "red",
 "res://scripts/": "green"
 }

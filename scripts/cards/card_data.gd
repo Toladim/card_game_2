@@ -26,8 +26,3 @@ enum Target {
 @export var texture : AtlasTexture
 @export var card_effects : Array[CardEffect]
 @export var mana_cost : int = 0
-
-@export_category("Card Effects")
-@export var attack : int = 0
-@export var deffence : int = 0
-@export var heal : int = 0
