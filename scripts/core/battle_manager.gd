@@ -18,7 +18,7 @@ extends Node
 
 var user_ui_data : Dictionary = {}
 
-var current_enemy : EnemyData = preload("res://scenes/decks/enemy_data_01.tres")
+var current_enemy : EnemyData = preload("res://custom_resouces/decks/enemy_data_01.tres")
 
 var mana_reg_value : int = 1
 
@@ -80,9 +80,9 @@ func start_turn(user: Character, target: Character):
 	if not battle_in_progress:
 		return
 
-	print(user.mana)
+	
 	user.add_mana(mana_reg_value)
-	print(user.mana)
+	
 
 	await get_tree().create_timer(2.0).timeout
 	var card = user.deck.draw_card()

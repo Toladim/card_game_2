@@ -3,13 +3,13 @@ extends Node
 var cards : Dictionary = {}
 
 func _ready() -> void:
-	var dir = DirAccess.open("res://scenes/cards/")
+	var dir = DirAccess.open("res://custom_resouces/cards/")
 	if dir:
 		var files = dir.get_files()
 		for file_name in files:
 			if file_name.ends_with(".tres"):
 				var id = file_name.get_basename()
-				var path = "res://scenes/cards/" + file_name
+				var path = "res://custom_resouces/cards/" + file_name
 				var card = load(path)
 				if card:
 					cards[id] = card

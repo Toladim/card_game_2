@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://5snru4wng522"]
 
-[ext_resource type="Script" path="res://scripts/global/custom_resouces/enemy_data.gd" id="1_7f7f0"]
-[ext_resource type="Texture2D" uid="uid://bslj0kof0w800" path="res://assets/atlas.tres" id="1_qm2bx"]
+[ext_resource type="Texture2D" uid="uid://bslj0kof0w800" path="res://assets/atlas.tres" id="1_6xc4g"]
+[ext_resource type="Script" path="res://scripts/characters/enemy_data.gd" id="2_5v8i8"]
 
 [resource]
-script = ExtResource("1_7f7f0")
+script = ExtResource("2_5v8i8")
 deck_ids = Array[String](["weak_heal", "kick", "block", "punch", "kick", "block", "kick", "block", "kick", "kick", "kick", "kick", "punch", "punch", "kick", "block", "block", "kick", "kick", "kick"])
 char_name = "But"
-avatar = ExtResource("1_qm2bx")
+avatar = ExtResource("1_6xc4g")
 current_health = 5
 max_health = 10
 max_mana = 10

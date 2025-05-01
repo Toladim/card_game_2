@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://ciajyprtkiq6r"]
+
+[ext_resource type="Script" path="res://scripts/card_effects/card_effect.gd" id="1_3281w"]
+[ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_i3bt7"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_epoxl"]
+load_path = "res://.godot/imported/#1 - Transparent Icons.png-a844bd7ea73e90253473d01b6ce0e60e.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32q16"]
+atlas = SubResource("CompressedTexture2D_epoxl")
+region = Rect2(64, 192, 32, 32)
+
+[resource]
+script = ExtResource("1_i3bt7")
+card_name = "Block"
+description = ""
+type = 0
+target = 0
+texture = SubResource("AtlasTexture_32q16")
+card_effects = Array[ExtResource("1_3281w")]([])
+mana_cost = 3
+attack = 0
+deffence = 1
+heal = 0

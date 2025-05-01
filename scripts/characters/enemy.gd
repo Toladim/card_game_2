@@ -5,7 +5,7 @@ class_name Enemy
 
 func _ready() -> void:
 	super._ready()
-
+	
 	if not enemy_data:
 		push_error("Brak przypisanego EnemyData!")
 		return

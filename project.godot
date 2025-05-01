@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DeckDatabase="*res://scripts/global/deck_database.gd"
-SaveManager="*res://scripts/global/save_manager.gd"
-GameSession="*res://scripts/global/game_session.gd"
+DeckDatabase="*res://scripts/data/deck_database.gd"
+SaveManager="*res://scripts/core/save_manager.gd"
+GameSession="*res://scripts/core/game_session.gd"
 
 [display]
 
@@ -34,9 +34,9 @@ window/stretch/aspect="ignore"
 
 folder_colors={
 "res://assets/": "purple",
+"res://custom_resouces/": "pink",
 "res://scenes/": "red",
-"res://scripts/": "green",
-"res://scripts/global/custom_resouces/": "pink"
+"res://scripts/": "green"
 }
 
 [rendering]
