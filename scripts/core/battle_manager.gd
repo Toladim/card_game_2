@@ -21,6 +21,7 @@ var user_ui_data : Dictionary = {}
 var current_enemy : EnemyData = preload("res://custom_resouces/decks/enemy_data_01.tres")
 
 var mana_reg_value : int = 1
+var round_count : int = 1
 
 var battle_in_progress : bool = false
 
@@ -57,7 +58,7 @@ func setup_character(character: Character, data: CharacterData) -> void:
 	character.character_name = data.char_name
 	character.health = data.max_health
 	character.max_health = data.max_health
-	character.mana = data.max_mana
+	character.mana = data.mana
 	character.max_mana = data.max_mana
 	
 	var ui = user_ui_data.get(character)
@@ -77,18 +78,15 @@ func draw_first_5_cards(user: Character, card_container: HBoxContainer):
 		card_container.add_child(card)
 
 func start_turn(user: Character, target: Character):
+	print(user.character_name, " ", user.mana)
 	if not battle_in_progress:
 		return
-
-	
 	user.add_mana(mana_reg_value)
-	
-
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(5.0).timeout
 	var card = user.deck.draw_card()
 	if card:
 		apply_card_effect(card, user, target)
-		update_hand(user)
+		
 	if target.health <=0 or target.deck.cards.size() <= 0:
 		end_battle(str(user.character_name) +" wygrywa")
 	elif user.health <=0 or user.deck.cards.size() <= 0:
@@ -110,15 +108,18 @@ func update_hand(user: Character):
 			container.add_child(new_card)
 		
 func apply_card_effect(card: CardData, user: Character, target: Character):
+	print("uzywam ", card)
 	if user.mana < card.mana_cost:
 		print("brakuje many")
+		user.add_mana(2*mana_reg_value) #daje 2x wiecej many podczas nie zagranej rundy
 		return
-		
+	
+	
 	user.mana -= card.mana_cost
 	user.mana_changed.emit(user.mana)
-##BUG 
-#ZAPISANE Z BUGIEM
-
+	for effect in card.card_effects:
+		effect.apply(user, target)
+	update_hand(user)
 func end_battle(result_text: String):
 	battle_in_progress = false
 	print(result_text)

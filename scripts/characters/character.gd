@@ -53,16 +53,18 @@ func take_damage(amount: int):
 
 func add_block(amount: int):
 	block += amount
-	print(character_name, " zyskał ", amount, " bloków.")
+	print(character_name, " zyskał", amount, " bloków.")
 
 func add_mana(amount: int):
 	mana += amount
 	if mana > max_mana:
-		mana = max_mana
-	mana_changed.emit(mana)
+		return
+	mana_changed.emit(amount)
+	print(character_name, " zyskał ", amount, " mana.")
 
 func heal(amount: int):
 	health += amount
 	if health > max_health:
 		health = max_health
 	health_changed.emit(health)
+	print(character_name, " zyskał ", health, " hp.")

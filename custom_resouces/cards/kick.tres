@@ -1,18 +1,21 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://dc3qnsedb1a18"]
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3 uid="uid://dc3qnsedb1a18"]
 
 [ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_eolmy"]
 [ext_resource type="Script" path="res://scripts/card_effects/card_effect.gd" id="1_lwyri"]
 [ext_resource type="Texture2D" uid="uid://bslj0kof0w800" path="res://assets/atlas.tres" id="2_7dlg1"]
+[ext_resource type="Script" path="res://scripts/card_effects/damage_effect.gd" id="2_7vife"]
+
+[sub_resource type="Resource" id="Resource_l82i1"]
+script = ExtResource("2_7vife")
+min_amount = 2
+max_amount = 5
 
 [resource]
 script = ExtResource("1_eolmy")
 card_name = "Kick"
 description = ""
 type = 0
-target = 1
+target = 2
 texture = ExtResource("2_7dlg1")
-card_effects = Array[ExtResource("1_lwyri")]([])
+card_effects = Array[ExtResource("1_lwyri")]([SubResource("Resource_l82i1")])
 mana_cost = 6
-attack = 2
-deffence = 0
-heal = 0

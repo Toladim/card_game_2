@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://cx3b5n6k1efko"]
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3 uid="uid://cx3b5n6k1efko"]
 
 [ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_pgwlh"]
 [ext_resource type="Script" path="res://scripts/card_effects/card_effect.gd" id="1_qw5ma"]
+[ext_resource type="Script" path="res://scripts/card_effects/heal_effect.gd" id="2_og0pa"]
 [ext_resource type="Texture2D" uid="uid://b77jbbm3b3k7y" path="res://assets/#1 - Transparent Icons.png" id="2_vj7v3"]
+
+[sub_resource type="Resource" id="Resource_86gef"]
+script = ExtResource("2_og0pa")
+amount = 10
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uavvl"]
 atlas = ExtResource("2_vj7v3")
@@ -15,5 +20,5 @@ description = ""
 type = 1
 target = 0
 texture = SubResource("AtlasTexture_uavvl")
-card_effects = Array[ExtResource("1_qw5ma")]([null, null])
-mana_cost = 4
+card_effects = Array[ExtResource("1_qw5ma")]([SubResource("Resource_86gef")])
+mana_cost = 5

@@ -1,7 +1,14 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://blngyhhqrn1a5"]
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3 uid="uid://blngyhhqrn1a5"]
 
+[ext_resource type="Script" path="res://scripts/card_effects/card_effect.gd" id="1_33e2e"]
 [ext_resource type="Script" path="res://scripts/cards/card_data.gd" id="1_yg2wv"]
 [ext_resource type="Texture2D" uid="uid://b77jbbm3b3k7y" path="res://assets/#1 - Transparent Icons.png" id="2_2clju"]
+[ext_resource type="Script" path="res://scripts/card_effects/damage_effect.gd" id="2_5s8o1"]
+
+[sub_resource type="Resource" id="Resource_knnvk"]
+script = ExtResource("2_5s8o1")
+min_amount = 1
+max_amount = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gif30"]
 atlas = ExtResource("2_2clju")
@@ -9,12 +16,10 @@ region = Rect2(480, 160, 32, 32)
 
 [resource]
 script = ExtResource("1_yg2wv")
-card_name = ""
+card_name = "Punch"
 description = ""
 type = 0
 target = 2
 texture = SubResource("AtlasTexture_gif30")
-mana_cost = 0
-attack = 1
-deffence = 0
-heal = 0
+card_effects = Array[ExtResource("1_33e2e")]([SubResource("Resource_knnvk")])
+mana_cost = 3

@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("2_5v8i8")
-deck_ids = Array[String](["weak_heal", "kick", "block", "punch", "kick", "block", "kick", "block", "kick", "kick", "kick", "kick", "punch", "punch", "kick", "block", "block", "kick", "kick", "kick"])
+deck_ids = Array[String](["kick", "kick", "weak_heal"])
 char_name = "But"
 avatar = ExtResource("1_6xc4g")
 current_health = 5
 max_health = 10
 max_mana = 10
-mana = 10
+mana = 1
