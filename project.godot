@@ -32,7 +32,7 @@ window/stretch/aspect="ignore"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/cardimporter/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 

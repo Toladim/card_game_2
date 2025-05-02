@@ -8,3 +8,5 @@ class_name CharacterData
 @export var max_health: int = 5
 @export var max_mana: int = 10
 @export var mana: int = 10
+@export var stamina: int = 10
+@export var def: int = 0

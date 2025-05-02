@@ -21,7 +21,6 @@ var user_ui_data : Dictionary = {}
 var current_enemy : EnemyData = preload("res://custom_resouces/decks/enemy_data_01.tres")
 
 var mana_reg_value : int = 1
-var round_count : int = 1
 
 var battle_in_progress : bool = false
 
@@ -108,12 +107,10 @@ func update_hand(user: Character):
 			container.add_child(new_card)
 		
 func apply_card_effect(card: CardData, user: Character, target: Character):
-	print("uzywam ", card)
 	if user.mana < card.mana_cost:
 		print("brakuje many")
 		user.add_mana(2*mana_reg_value) #daje 2x wiecej many podczas nie zagranej rundy
 		return
-	
 	
 	user.mana -= card.mana_cost
 	user.mana_changed.emit(user.mana)
