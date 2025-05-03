@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqq80mplnpcpb"]
+
+[ext_resource type="Script" path="res://scripts/ui/inventory/card_slot.gd" id="1_aorg7"]
+[ext_resource type="Texture2D" uid="uid://cdfqgwxnabu2f" path="res://icon.svg" id="1_fc4er"]
+[ext_resource type="PackedScene" uid="uid://tyxed2pg61cc" path="res://scenes/cards/card.tscn" id="2_3xrsb"]
+[ext_resource type="Texture2D" uid="uid://dtmls2tn8ksct" path="res://assets/inv_bckgd.png" id="2_uevp4"]
+
+[node name="CardSlot" type="Control"]
+custom_minimum_size = Vector2(128, 192)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 192.0
+script = ExtResource("1_aorg7")
+card_scene = ExtResource("2_3xrsb")
+
+[node name="background" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fc4er")
+expand_mode = 1
+
+[node name="CenterContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(128, 198)
+layout_mode = 1
+offset_right = 160.0
+offset_bottom = 240.0
+
+[node name="card" parent="CenterContainer" instance=ExtResource("2_3xrsb")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_uevp4")
+expand_mode = 1
+
+[node name="quantity" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "9999"
+horizontal_alignment = 1
+vertical_alignment = 1
