@@ -12,3 +12,5 @@ current_health = 5
 max_health = 10
 max_mana = 10
 mana = 1
+stamina = 10
+def = 0
