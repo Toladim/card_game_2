@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c5c1j13l8t455"]
 
+[ext_resource type="Script" path="res://scripts/ui/inventory/inventory.gd" id="1_pg0ku"]
 [ext_resource type="PackedScene" uid="uid://cqq80mplnpcpb" path="res://scenes/ui/inventory/card_slot.tscn" id="2_4toth"]
-[ext_resource type="Texture2D" uid="uid://cdfqgwxnabu2f" path="res://icon.svg" id="2_84n3g"]
 [ext_resource type="Texture2D" uid="uid://dtmls2tn8ksct" path="res://assets/inv_bckgd.png" id="8_hgryv"]
 
 [node name="Inventory" type="Control"]
@@ -15,6 +15,8 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_vertical = 0
 mouse_force_pass_scroll_events = false
+script = ExtResource("1_pg0ku")
+card_slot_scene = ExtResource("2_4toth")
 
 [node name="DragNode" type="Control" parent="."]
 unique_name_in_owner = true
@@ -124,18 +126,21 @@ texture = ExtResource("8_hgryv")
 expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 2
+offset_right = 632.0
+offset_bottom = 888.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 45
 theme_override_constants/margin_top = 45
 theme_override_constants/margin_right = 45
-theme_override_constants/margin_bottom = 45
+theme_override_constants/margin_bottom = 10
 
-[node name="CardGrid" type="GridContainer" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CardGrid" type="GridContainer" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -144,215 +149,27 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 4
 
-[node name="CardSlot" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid" instance=ExtResource("2_4toth")]
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+size_flags_vertical = 10
+alignment = 1
 
-[node name="cardslot2" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
+[node name="PrevButton" type="Button" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 25)
 layout_mode = 2
+text = "<"
 
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot3" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
+[node name="Label" type="Label" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 30)
 layout_mode = 2
+text = "1/1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot4" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
+[node name="NextButton" type="Button" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 30)
 layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot5" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot5"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot6" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot6"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot7" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot7"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot8" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot8"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot9" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot9"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot10" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot10"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot11" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot11"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot12" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot12"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot13" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot13"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot14" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot14"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot15" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot15"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
-
-[node name="cardslot16" type="Control" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid"]
-custom_minimum_size = Vector2(128, 192)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Background/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/TextureRect/MarginContainer/CardGrid/cardslot16"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_84n3g")
-expand_mode = 1
+text = ">"

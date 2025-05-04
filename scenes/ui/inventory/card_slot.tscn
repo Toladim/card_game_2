@@ -11,6 +11,8 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 128.0
 offset_bottom = 192.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_aorg7")
 card_scene = ExtResource("2_3xrsb")
 
@@ -25,16 +27,12 @@ grow_vertical = 2
 texture = ExtResource("1_fc4er")
 expand_mode = 1
 
-[node name="CenterContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(128, 198)
-layout_mode = 1
-offset_right = 160.0
-offset_bottom = 240.0
+[node name="CardContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="card" parent="CenterContainer" instance=ExtResource("2_3xrsb")]
-layout_mode = 2
-
-[node name="Control" type="Control" parent="."]
+[node name="Control2" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -47,7 +45,7 @@ offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="Control2"]
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 1
 anchors_preset = 7
@@ -63,7 +61,7 @@ grow_vertical = 0
 texture = ExtResource("2_uevp4")
 expand_mode = 1
 
-[node name="quantity" type="Label" parent="Control"]
+[node name="quantity" type="Label" parent="Control2"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15

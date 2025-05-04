@@ -5,8 +5,11 @@
 
 [node name="card" type="Control"]
 custom_minimum_size = Vector2(160, 240)
+layout_direction = 1
 layout_mode = 3
 anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 240.0
 script = ExtResource("1_7oo46")
 
 [node name="background" type="ColorRect" parent="."]
@@ -27,9 +30,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -70.0
-offset_top = -60.0
+offset_top = -70.0
 offset_right = 70.0
-offset_bottom = 80.0
+offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_y5u2s")
