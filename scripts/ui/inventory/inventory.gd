@@ -36,18 +36,17 @@ func _create_slot_pool():
 func _update_page():
 	var start_index = current_page * max_cards_per_page
 	var end_index = min(start_index + max_cards_per_page, cards.size())
-	
+	#--------------------=======TEST=====--------------------------------#
 	for i in range(max_cards_per_page):
 		var slot = slot_pool[i]
 		if i + start_index < end_index:
 			var card = cards[i + start_index]
 			slot.load_slot(card)
-			print(card.card_name)
 			slot.visible = true
 		else:
 			slot.clear()
 			slot.visible = false
-	
+	#--------------------=======TEST=====--------------------------------#
 	_update_navigation()
 
 func _update_navigation():

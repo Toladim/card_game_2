@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bu430u6qxlb8u"]
+
+[node name="Chunk00" type="Node2D"]
+
+[node name="TerrainLayer" type="TileMapLayer" parent="."]
+
+[node name="Objects" type="TileMapLayer" parent="TerrainLayer"]
+
+[node name="BatlleHexContainer" type="Node2D" parent="."]
