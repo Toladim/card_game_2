@@ -21,6 +21,7 @@ var user_ui_data : Dictionary = {}
 var current_enemy : EnemyData = preload("res://custom_resouces/decks/enemy_data_01.tres")
 
 var mana_reg_value : int = 1
+var TURN_TIME : float = 5
 
 var battle_in_progress : bool = false
 
@@ -77,19 +78,19 @@ func draw_first_5_cards(user: Character, card_container: HBoxContainer):
 		card_container.add_child(card)
 
 func start_turn(user: Character, target: Character):
-	print(user.character_name, " ", user.mana)
+	print(user.deck.cards.size())
 	if not battle_in_progress:
 		return
 	user.add_mana(mana_reg_value)
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(TURN_TIME).timeout
 	var card = user.deck.draw_card()
 	if card:
 		apply_card_effect(card, user, target)
 		
 	if target.health <=0 or target.deck.cards.size() <= 0:
-		end_battle(str(user.character_name) +" wygrywa")
+		end_battle(user)
 	elif user.health <=0 or user.deck.cards.size() <= 0:
-		end_battle(str(target.character_name) +" wygrywa")
+		end_battle(target)
 	else:
 		start_turn(target, user)
 		
@@ -107,19 +108,47 @@ func update_hand(user: Character):
 			container.add_child(new_card)
 		
 func apply_card_effect(card: CardData, user: Character, target: Character):
+	var played = false
+
 	if user.mana < card.mana_cost:
-		print("brakuje many")
-		user.add_mana(2*mana_reg_value) #daje 2x wiecej many podczas nie zagranej rundy
-		return
+		print("Brakuje many na zagranie karty:", card.card_name)
+		user.add_mana(2 * mana_reg_value)
+		played = false
+	else:
+		user.mana -= card.mana_cost
+		user.mana_changed.emit(user.mana)
+		for effect in card.card_effects:
+			effect.apply(user, target)
+			played = true
 	
-	user.mana -= card.mana_cost
-	user.mana_changed.emit(user.mana)
-	for effect in card.card_effects:
-		effect.apply(user, target)
 	update_hand(user)
-func end_battle(result_text: String):
+	if not played:
+		return
+
+func end_battle(winner: Character):
 	battle_in_progress = false
-	print(result_text)
+	print(winner.character_name, " wygral")
+	
+	if winner == player:
+		var player_data = GameSession.player_data
+		var remaining_cards = player.deck.cards
+		var to_return = {}
+		
+		for card_data in remaining_cards:
+			var id = card_data.card_name
+			if to_return.has(id):
+				to_return[id] += 1
+			else:
+				to_return[id] = 1
+		
+		for id in to_return.keys():
+			if player_data.owned_cards.has(id):
+				player_data.owned_cards[id] += to_return[id]
+			else:
+				player_data.owned_cards[id] = to_return[id]
+		
+		player_data.deck_ids.clear()
+		SaveManager.save_game(player_data)
 
 func connect_character_ui(character: Character):
 	var ui = user_ui_data.get(character)

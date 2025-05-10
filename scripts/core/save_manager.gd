@@ -12,7 +12,8 @@ func save_game(data: PlayerData) -> void:
 		"max_health" = data.max_health,
 		"mana" = data.mana,
 		"max_mana" = data.max_mana,
-		"deck_ids" = data.deck_ids
+		"deck_ids" = data.deck_ids,
+		"owned_cards" = data.owned_cards
 		}
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	file.store_string(JSON.stringify(save_dict))
@@ -48,5 +49,14 @@ func load_game():
 		else:
 			deck_ids.append(str(id))
 	data.deck_ids = deck_ids
+	
+	var raw_owned = result.get("owned_cards", {})
+	var parsed_owned : Dictionary = {}
+	for key in raw_owned.keys():
+		var count = int(raw_owned[key])
+		if count > 0:
+			parsed_owned[str(key)] = count
+	data.owned_cards = parsed_owned
+	
 	print("Gra została wczytana:", data.deck_ids)
 	return data

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c62kynt37vks"]
+
+[ext_resource type="Script" path="res://scripts/maps/battle_hex/battle_hex.gd" id="1_h44to"]
+[ext_resource type="Texture2D" uid="uid://dvo5wilm5fqfn" path="res://assets/battle_hex_bckgrd.png" id="2_7emt8"]
+
+[node name="job" type="Area2D"]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_h44to")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7emt8")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="Icon" type="Sprite2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-19, -31, -36, -1, -19, 28, 20, 28, 36, 0, 17, -31)
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
